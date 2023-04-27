@@ -1,0 +1,16 @@
+{
+    "name": "RGLAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a8d9bdb9773324fefab05628a1432b8c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

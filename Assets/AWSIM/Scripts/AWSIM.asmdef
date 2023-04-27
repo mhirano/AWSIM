@@ -1,0 +1,37 @@
+{
+    "name": "AWSIM",
+    "rootNamespace": "",
+    "references": [
+        "GUID:aa66a2781a3afec72bf70f7814399042",
+        "GUID:a8d9bdb9773324fefab05628a1432b8c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "ros2cs_core.dll",
+        "ros2cs_common.dll",
+        "rcl_interfaces_assembly.dll",
+        "action_msgs_assembly.dll",
+        "YamlDotNet.dll",
+        "unique_identifier_msgs_assembly.dll",
+        "builtin_interfaces_assembly.dll",
+        "clipper_library.dll",
+        "geometry_msgs_assembly.dll",
+        "rosgraph_msgs_assembly.dll",
+        "diagnostic_msgs_assembly.dll",
+        "sensor_msgs_assembly.dll",
+        "nav_msgs_assembly.dll",
+        "autoware_auto_vehicle_msgs_assembly.dll",
+        "autoware_auto_control_msgs_assembly.dll",
+        "Unity.VisualScripting.Antlr3.Runtime.dll",
+        "tier4_vehicle_msgs_assembly.dll",
+        "std_msgs_assembly.dll",
+        "System.ComponentModel.Primitives.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
