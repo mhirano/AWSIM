@@ -63,6 +63,7 @@ namespace RGLUnityPlugin
         private static readonly int visualizationLayerID = 11;
 
         private Mesh mesh;
+        Vector3[] onlyHits = new Vector3[0];
 
         private LidarSensor lidarSensor;
         private RGLNodeSequence rglSubgraphVisualizationOutput;
@@ -72,6 +73,8 @@ namespace RGLUnityPlugin
         {
             rglSubgraphVisualizationOutput = new RGLNodeSequence()
                 .AddNodePointsYield(visualizationOutputNodeId, RGLField.XYZ_F32);
+
+            rglSubgraphVisualizationOutput.SetPriority(visualizationOutputNodeId, 1);
 
             lidarSensor = GetComponent<LidarSensor>();
         }

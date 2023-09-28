@@ -412,7 +412,13 @@ namespace RGLUnityPlugin
                 DisconnectNode(node);
             }
         }
-
+        
+        public void SetPriority(string identifier, int priority)
+        {
+            RGLNodeHandle node = ValidateNode(identifier);
+            RGLNativeAPI.GraphNodeSetPriority(node.Node, priority);
+        }
+        
         //// PRIVATE HELPERS ////
         // Throws an exception when node with provided identifier already exists in this NodeSequence
         private void CheckNodeNotExist(string identifier)
