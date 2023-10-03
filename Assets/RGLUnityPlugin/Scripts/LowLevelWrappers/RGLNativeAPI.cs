@@ -15,6 +15,7 @@
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace RGLUnityPlugin
 {
@@ -419,7 +420,9 @@ namespace RGLUnityPlugin
         {
             Int32 pointCount = 0;
             Int32 pointSize = 0;
+            Profiler.BeginSample("get_result_size");
             CheckErr(rgl_graph_get_result_size(node, field, out pointCount, out pointSize));
+            Profiler.EndSample();
             unsafe
             {
                 if (pointSize != expectedPointSize)
@@ -441,7 +444,9 @@ namespace RGLUnityPlugin
                 }
                 fixed (T* dataPtr = data)
                 {
+                    Profiler.BeginSample("get_result_data");
                     CheckErr(rgl_graph_get_result_data(node, field, (IntPtr) dataPtr));
+                    Profiler.EndSample();
                 }
                 return (int) pointCount;
             }

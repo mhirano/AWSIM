@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Object = System.Object;
@@ -179,10 +180,7 @@ namespace RGLUnityPlugin
             timer = 0;
 
             Capture();
-            if (onNewData != null)
-            {
-                onNewData.Invoke();
-            }
+
         }
 
         /// <summary>
@@ -212,12 +210,41 @@ namespace RGLUnityPlugin
         {
             sceneManager.DoUpdate();
 
-            // Set lidar pose
-            Matrix4x4 lidarPose = gameObject.transform.localToWorldMatrix * configuration.GetLidarOriginTransfrom();
-            rglGraphLidar.UpdateNodeRaysTransform(lidarPoseNodeId, lidarPose);
-            rglSubgraphToLidarFrame.UpdateNodePointsTransform(toLidarFrameNodeId, lidarPose.inverse);
-
-            rglGraphLidar.Run();
+            sensors.Add(this);
+            if (sensors.Count == 4)
+            {
+                LidarSensor.CaptureAll();
+                sensors.Clear();
+            }
         }
+
+        private static HashSet<LidarSensor> sensors = new HashSet<LidarSensor>();
+        static void CaptureAll()
+        {
+           
+            foreach (var sensor in sensors)
+            {
+                Matrix4x4 lidarPose = sensor.transform.localToWorldMatrix * sensor.configuration.GetLidarOriginTransfrom();
+                sensor.rglGraphLidar.UpdateNodeRaysTransform(sensor.lidarPoseNodeId, lidarPose);
+                sensor.rglSubgraphToLidarFrame.UpdateNodePointsTransform(sensor.toLidarFrameNodeId, lidarPose.inverse);
+            }
+            
+            foreach (var sensor in sensors)
+            {
+                sensor.rglGraphLidar.Run();
+            }
+
+            
+            foreach (var sensor in sensors)
+            {
+                if (sensor.onNewData != null)
+                {
+                    sensor.onNewData.Invoke();
+                }
+            }
+            
+        }
+        
+        
     }
 }

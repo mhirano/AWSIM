@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Serialization;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace RGLUnityPlugin
 {
@@ -64,6 +66,8 @@ namespace RGLUnityPlugin
 
         private Mesh mesh;
         Vector3[] onlyHits = new Vector3[0];
+
+        private int[] indices = new int[0];
 
         private LidarSensor lidarSensor;
         private RGLNodeSequence rglSubgraphVisualizationOutput;
@@ -130,17 +134,17 @@ namespace RGLUnityPlugin
 
         public void SetPoints(Vector3[] points)
         {
-            // TODO: easy, low-prio optimization here
-            int[] indicies = new int[points.Length];
-
-            for (int i = 0; i < points.Length; ++i)
+            if (indices.Length < points.Length)
             {
-                indicies[i] = i;
+                indices = new int[points.Length];
+                for (int i = 0; i < points.Length; ++i)
+                {
+                    indices[i] = i;
+                }
             }
-
-            mesh.Clear();
+            
             mesh.vertices = points;
-            mesh.SetIndices(indicies, MeshTopology.Points, 0);
+            mesh.SetIndices(indices, 0, points.Length, MeshTopology.Points, 0);
 
             if (autoComputeColoringHeights)
             {
@@ -159,9 +163,13 @@ namespace RGLUnityPlugin
 
         private void OnNewLidarData()
         {
-            Vector3[] onlyHits = new Vector3[0];
+            // TODO: this will display stale data!!
+            Profiler.BeginSample($"GetResultData-{name}");
             rglSubgraphVisualizationOutput.GetResultData<Vector3>(ref onlyHits);
+            Profiler.EndSample();
+            Profiler.BeginSample($"SetPoints-{name}");
             SetPoints(onlyHits);
+            Profiler.EndSample();
         }
     }
 }
