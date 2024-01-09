@@ -1,8 +1,7 @@
 {
-    "name": "RGLAssembly",
+    "name": "ROSCommon",
     "rootNamespace": "",
     "references": [
-        "GUID:1b770255fa5c1f9609e47a5b7a955561",
         "GUID:a8d9bdb9773324fefab05628a1432b8c"
     ],
     "includePlatforms": [],

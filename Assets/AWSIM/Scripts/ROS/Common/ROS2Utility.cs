@@ -70,10 +70,10 @@ namespace AWSIM
         /// Convert position from ROS (MGRS) to Unity (word coordinate system).
         /// </summary>
         /// <param name="rosPosition">position by ROS in MGRS</param>
+        /// <param name="offset">mgrs offset</param>
         /// <returns>position by Unity in Unity WORLD</returns>
-        public static Vector3 RosMGRSToUnityPosition(geometry_msgs.msg.Point rosPosition)
+        public static Vector3 RosMGRSToUnityPosition(geometry_msgs.msg.Point rosPosition, Vector3 offset)
         {
-            var offset = Environment.Instance.MgrsOffsetPosition;
             return new Vector3(-(float)(rosPosition.Y - offset.y),
                                (float)(rosPosition.Z - offset.z),
                                (float)(rosPosition.X - offset.x));

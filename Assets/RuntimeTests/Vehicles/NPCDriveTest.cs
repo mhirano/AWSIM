@@ -14,7 +14,7 @@ public class VehicleTest
     [UnitySetUp]
     public IEnumerator Setup()
     {
-        yield return EditorSceneManager.LoadSceneAsync("NPCVehicleSample", LoadSceneMode.Additive);
+        yield return EditorSceneManager.LoadSceneAsync("NPCDriveTest", LoadSceneMode.Additive);
     }
 
     [UnityTest]

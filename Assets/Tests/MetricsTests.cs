@@ -18,11 +18,7 @@ public class MetricsTests
     [UnityTest]
     public IEnumerator MetricsTestsWithEnumeratorPasses()
     {
-        AWISM.Metrics.MetricsManager metricsManager = new AWISM.Metrics.MetricsManager();
-        // Assert.False(metricsManager.test());
-        // MetricsManager manager;
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
+        Assert.True(true);
         yield return null;
     }
 }

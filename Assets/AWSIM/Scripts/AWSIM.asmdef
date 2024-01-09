@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "GUID:aa66a2781a3afec72bf70f7814399042",
-        "GUID:a8d9bdb9773324fefab05628a1432b8c"
+        "GUID:a8d9bdb9773324fefab05628a1432b8c",
+        "GUID:1b770255fa5c1f9609e47a5b7a955561"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -28,7 +29,11 @@
         "Unity.VisualScripting.Antlr3.Runtime.dll",
         "tier4_vehicle_msgs_assembly.dll",
         "std_msgs_assembly.dll",
-        "System.ComponentModel.Primitives.dll"
+        "System.ComponentModel.Primitives.dll",
+        "autoware_auto_perception_msgs_assembly.dll",
+        "autoware_perception_msgs_assembly.dll",
+        "entity_controller_msgs_assembly.dll",
+        "ZeroMQ.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],

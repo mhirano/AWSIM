@@ -168,7 +168,7 @@ namespace AWSIM
                     SpawnConfig.Topic, msg =>
                     {
                         concurrentQueue.Enqueue(() => Spawn(msg.Asset_key, msg.Unique_id,
-                                                            ROS2Utility.RosMGRSToUnityPosition(msg.Pose.Position),
+                                                            ROS2Utility.RosMGRSToUnityPosition(msg.Pose.Position, Environment.Instance.MgrsOffsetPosition),
                                                             ROS2Utility.RosToUnityRotation(msg.Pose.Orientation)));
                     }, SpawnConfig.Qos.GetQoSProfile());
 
@@ -177,7 +177,7 @@ namespace AWSIM
                     UpdatePoseConfig.Topic, msg =>
                     {
                         concurrentQueue.Enqueue(() => UpdatePose(msg.Unique_id,
-                                                                ROS2Utility.RosMGRSToUnityPosition(msg.Pose.Position),
+                                                                ROS2Utility.RosMGRSToUnityPosition(msg.Pose.Position, Environment.Instance.MgrsOffsetPosition),
                                                                 ROS2Utility.RosToUnityRotation(msg.Pose.Orientation)));
                     }, UpdatePoseConfig.Qos.GetQoSProfile());
 
