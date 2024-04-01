@@ -68,3 +68,8 @@ crashlytics-build.properties
 # JetBrains
 /.idea/
 
+# My dataset
+Resources/
+
+# Mac
+.DS_Store
