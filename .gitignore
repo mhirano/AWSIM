@@ -69,7 +69,8 @@ crashlytics-build.properties
 /.idea/
 
 # My dataset
-Resources/
+res/
 
 # Mac
 .DS_Store
+
