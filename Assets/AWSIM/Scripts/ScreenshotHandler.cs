@@ -11,9 +11,9 @@ using UnityEngine.SceneManagement;
 public class ScreenshotHandler : MonoBehaviour
 {
     // カメラの参照
-    [SerializeField] Camera camera;
+    [SerializeField] Camera cameraToCapture;
     // 保存するスクリーンショットの上限数
-    const int UPPER_LIMIT_SAVE_PICTURE = 5;
+    const int UPPER_LIMIT_SAVE_PICTURE = 100;
     // スクリーンショットのファイル形式
     const string PNG = ".png";
 
@@ -28,14 +28,14 @@ public class ScreenshotHandler : MonoBehaviour
     {
         // カメラの描画結果を一時的に保存するためのRenderTextureを作成
         var rt = RenderTexture.GetTemporary(width, height, 24, RenderTextureFormat.ARGB32);
-        var oldTarget = camera.targetTexture;
+        var oldTarget = cameraToCapture.targetTexture;
 
         // カメラの描画先を一時的に作成したRenderTextureに変更して、レンダリング
-        camera.targetTexture = rt;
-        camera.Render();
+        cameraToCapture.targetTexture = rt;
+        cameraToCapture.Render();
 
         // カメラの描画先を元に戻す
-        camera.targetTexture = oldTarget;
+        cameraToCapture.targetTexture = oldTarget;
 
         // GPUからピクセルデータを非同期で読み取る
         AsyncGPUReadback.Request(rt, 0, async request =>
