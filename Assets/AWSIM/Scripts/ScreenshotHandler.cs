@@ -16,15 +16,21 @@ public class ScreenshotHandler : MonoBehaviour
     const int UPPER_LIMIT_SAVE_PICTURE = 100;
     // スクリーンショットのファイル形式
     const string PNG = ".png";
-    static int fileInd_camera1 = 0;
-    static int fileInd_camera2 = 0;
-    static int fileInd_camera3 = 0;
+    // static int fileInd_camera1 = 0;
+    // static int fileInd_camera2 = 0;
+    // static int fileInd_camera3 = 0;
+    int fileInd = 0;
+    
+    string saveDirectoryRootPath;
 
+    void Awake(){
+        // string directoryPath = Application.persistentDataPath + "/" + folderName + "/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "/" + cameraToCapture.name +"/";  // e.g. /home/mhirano/.config/unity3d/TIERIV/AWSIM/AutowareSimulation/
+        saveDirectoryRootPath = Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "/" + DateTime.Now.ToString("yyyyMMddHHmmss");  // e.g. /home/mhirano/.config/unity3d/TIERIV/AWSIM/AutowareSimulation/
+    }    
     void Update()
     {
         CaptureScreenshotWithAsyncGPUReadback();
     }
-
 
     // スクリーンショットを撮影し、保存するメソッド
     public void CaptureScreenshotWithAsyncGPUReadback(int width = 1280, int height = 720)
@@ -116,7 +122,8 @@ public class ScreenshotHandler : MonoBehaviour
     // 保存ディレクトリのパスを取得するメソッド
     string GetSaveDirectoryPath(string folderName)
     {
-        string directoryPath = Application.persistentDataPath + "/" + folderName + "/" + cameraToCapture.name +"/";  // e.g. /home/mhirano/.config/unity3d/TIERIV/AWSIM/AutowareSimulation/
+        // string directoryPath = Application.persistentDataPath + "/" + folderName + "/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "/" + cameraToCapture.name +"/";  // e.g. /home/mhirano/.config/unity3d/TIERIV/AWSIM/AutowareSimulation/
+        string directoryPath = saveDirectoryRootPath + "/" + cameraToCapture.name +"/";  // e.g. /home/mhirano/.config/unity3d/TIERIV/AWSIM/AutowareSimulation/
 
         if (!Directory.Exists(directoryPath))
         {
@@ -131,13 +138,14 @@ public class ScreenshotHandler : MonoBehaviour
     // 保存先のファイルのパス取得
     string GetSaveFilePath(string folderName, string fileType)
     {
-        if(cameraToCapture.name.Equals("CameraToCapture1")){
-            return GetSaveDirectoryPath(folderName) + (fileInd_camera1++).ToString() + fileType;
-        } else if (cameraToCapture.name.Equals("CameraToCapture2")){
-            return GetSaveDirectoryPath(folderName) + (fileInd_camera2++).ToString() + fileType;
-        } else if (cameraToCapture.name.Equals("CameraToCapture3")) {
-            return GetSaveDirectoryPath(folderName) + (fileInd_camera3++).ToString() + fileType;
-        }
-        return GetSaveDirectoryPath(folderName) + DateTime.Now.ToString("yyyyMMddHHmmss") + fileType;
+        // if(cameraToCapture.name.Equals("CameraToCapture1")){
+        //     return GetSaveDirectoryPath(folderName) + (fileInd_camera1++).ToString() + fileType;
+        // } else if (cameraToCapture.name.Equals("CameraToCapture2")){
+        //     return GetSaveDirectoryPath(folderName) + (fileInd_camera2++).ToString() + fileType;
+        // } else if (cameraToCapture.name.Equals("CameraToCapture3")) {
+        //     return GetSaveDirectoryPath(folderName) + (fileInd_camera3++).ToString() + fileType;
+        // }
+        // return GetSaveDirectoryPath(folderName) + "" + fileType;
+            return GetSaveDirectoryPath(folderName) + (fileInd++).ToString() + fileType;
     }
 }
