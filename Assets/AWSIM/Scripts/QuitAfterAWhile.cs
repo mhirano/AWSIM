@@ -12,7 +12,7 @@ public class QuitAfterAWhile : MonoBehaviour
     private IEnumerator DelayCoroutine()
     {
         // 100フレーム待つ
-        for (var i = 0; i < 100; i++)
+        for (var i = 0; i < 400; i++)
         {
             yield return null;
         }

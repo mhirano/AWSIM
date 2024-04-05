@@ -3547,7 +3547,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396183958}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!4 &1396183962
 Transform:
   m_ObjectHideFlags: 0
@@ -3745,7 +3745,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397354549}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!4 &1397354553
 Transform:
   m_ObjectHideFlags: 0
@@ -4790,7 +4790,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984249949}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1984249953
 Camera:
   m_ObjectHideFlags: 0
@@ -5198,6 +5198,10 @@ PrefabInstance:
     - target: {fileID: 2963107001926338971, guid: 164645b2d105b6b4ab4e3d2e7c65dab2, type: 3}
       propertyPath: m_SuspensionDistance
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089313591046698684, guid: 164645b2d105b6b4ab4e3d2e7c65dab2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4981081891045692864, guid: 164645b2d105b6b4ab4e3d2e7c65dab2, type: 3}
       propertyPath: m_Name

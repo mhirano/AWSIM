@@ -16,6 +16,9 @@ public class ScreenshotHandler : MonoBehaviour
     const int UPPER_LIMIT_SAVE_PICTURE = 100;
     // スクリーンショットのファイル形式
     const string PNG = ".png";
+    static int fileInd_camera1 = 0;
+    static int fileInd_camera2 = 0;
+    static int fileInd_camera3 = 0;
 
     void Update()
     {
@@ -24,7 +27,7 @@ public class ScreenshotHandler : MonoBehaviour
 
 
     // スクリーンショットを撮影し、保存するメソッド
-    public void CaptureScreenshotWithAsyncGPUReadback(int width = 1920, int height = 1080)
+    public void CaptureScreenshotWithAsyncGPUReadback(int width = 1280, int height = 720)
     {
         // カメラの描画結果を一時的に保存するためのRenderTextureを作成
         var rt = RenderTexture.GetTemporary(width, height, 24, RenderTextureFormat.ARGB32);
@@ -50,14 +53,14 @@ public class ScreenshotHandler : MonoBehaviour
                 // 現在のシーン名を使用してファイルパスを生成
                 string path = SceneManager.GetActiveScene().name;
 
-                // 保存ディレクトリからファイルパスのリストを取得
-                List<string> imageFilePaths = GetAllFileFromDirectory(GetSaveDirectoryPath(path));
+                // // 保存ディレクトリからファイルパスのリストを取得
+                // List<string> imageFilePaths = GetAllFileFromDirectory(GetSaveDirectoryPath(path));
 
-                // ファイル数が上限に達していた場合、最も古いファイルを削除
-                if (imageFilePaths.Count >= UPPER_LIMIT_SAVE_PICTURE)
-                {
-                    File.Delete(imageFilePaths[0]);
-                }
+                // // ファイル数が上限に達していた場合、最も古いファイルを削除
+                // if (imageFilePaths.Count >= UPPER_LIMIT_SAVE_PICTURE)
+                // {
+                //     File.Delete(imageFilePaths[0]);
+                // }
 
                 // リクエストから生のピクセルデータを取得
                 var data = request.GetData<Color32>();
@@ -128,6 +131,13 @@ public class ScreenshotHandler : MonoBehaviour
     // 保存先のファイルのパス取得
     string GetSaveFilePath(string folderName, string fileType)
     {
+        if(cameraToCapture.name.Equals("CameraToCapture1")){
+            return GetSaveDirectoryPath(folderName) + (fileInd_camera1++).ToString() + fileType;
+        } else if (cameraToCapture.name.Equals("CameraToCapture2")){
+            return GetSaveDirectoryPath(folderName) + (fileInd_camera2++).ToString() + fileType;
+        } else if (cameraToCapture.name.Equals("CameraToCapture3")) {
+            return GetSaveDirectoryPath(folderName) + (fileInd_camera3++).ToString() + fileType;
+        }
         return GetSaveDirectoryPath(folderName) + DateTime.Now.ToString("yyyyMMddHHmmss") + fileType;
     }
 }
