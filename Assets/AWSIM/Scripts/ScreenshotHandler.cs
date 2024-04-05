@@ -113,7 +113,7 @@ public class ScreenshotHandler : MonoBehaviour
     // 保存ディレクトリのパスを取得するメソッド
     string GetSaveDirectoryPath(string folderName)
     {
-        string directoryPath = Application.persistentDataPath + "/" + folderName + "/";  // e.g. /home/mhirano/.config/unity3d/TIERIV/AWSIM/AutowareSimulation/
+        string directoryPath = Application.persistentDataPath + "/" + folderName + "/" + cameraToCapture.name +"/";  // e.g. /home/mhirano/.config/unity3d/TIERIV/AWSIM/AutowareSimulation/
 
         if (!Directory.Exists(directoryPath))
         {
