@@ -15,7 +15,6 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] Camera cameraToCapture;
     // スクリーンショットのファイル形式
     const string PNG = ".png";
-    int fileInd = 0;
     
     string saveDirectoryRootPath;
 
@@ -105,6 +104,6 @@ public class ScreenshotHandler : MonoBehaviour
     // 保存先のファイルのパス取得
     string GetSaveFilePath(string folderName, string fileType)
     {
-            return GetSaveDirectoryPath(folderName) + (fileInd++).ToString() + fileType;
+            return GetSaveDirectoryPath(folderName) + (Time.frameCount).ToString() + fileType;
     }
 }

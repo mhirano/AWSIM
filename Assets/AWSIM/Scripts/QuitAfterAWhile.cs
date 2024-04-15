@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class QuitAfterAWhile : MonoBehaviour
 {
-    void Start()
+    void Update()
     {
-        StartCoroutine(DelayCoroutine());
-    }
-
-    private IEnumerator DelayCoroutine()
-    {
-        // 100フレーム待つ
-        for (var i = 0; i < 400; i++)
-        {
-            yield return null;
-        }
+        if (Time.frameCount > 400){
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
         #else
             Application.Quit();//ゲームプレイ終了
         #endif
+        }
     }
 
 }
